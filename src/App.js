@@ -9,7 +9,7 @@ import {
 import pokemonList from './data';
 import Routes from './routes';
 
-import './App.css';
+import './App.css'; // Teste
 
 class App extends Component {
   constructor(props) {
