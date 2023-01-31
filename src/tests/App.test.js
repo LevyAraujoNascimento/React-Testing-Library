@@ -57,11 +57,11 @@ describe('Teste do App', () => {
 
   it('Testando o caminho NotFound', () => {
     const { history } = renderWithRouter(<App />);
-    
+
     act(() => {
-        history.push('/pagina-que-nao-existe');
+      history.push('/pagina-que-nao-existe');
     });
-    
+
     const notFound = screen.getByText(/Page requested not found/i);
     expect(notFound).toBeInTheDocument();
   });
