@@ -1,5 +1,5 @@
 import React from 'react';
-import { getByText, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import pokemonList from '../data';
 import App from '../App';
@@ -23,12 +23,12 @@ describe('Teste do Componente Pokedex', () => {
     const proxPokemon = screen.getByTestId('next-pokemon');
     expect(proxPokemon).toHaveTextContent('Próximo Pokémon');
 
-    for (let index = 0; index < numPokemons; index++) {
+    for (let index = 0; index < numPokemons; index += 1) {
       if (index === pokemons.length) {
         expect(atualPokemon).toHaveTextContent(pokemons[0].name);
       } else {
         expect(atualPokemon).toHaveTextContent(pokemons[index].name);
-        userEvent.click(proxPokemon);  
+        userEvent.click(proxPokemon);
       }
     }
   });
@@ -44,7 +44,7 @@ describe('Teste do Componente Pokedex', () => {
     renderWithRouter(<App />);
 
     const atualPokemon = screen.getByTestId('pokemon-type');
-  
+
     const painelTipos = screen.getAllByTestId('pokemon-type-button');
     const botaoAll = screen.getByText(/All/i);
     expect(botaoAll).toHaveTextContent('All');
@@ -62,7 +62,6 @@ describe('Teste do Componente Pokedex', () => {
     userEvent.click(dragonType);
     expect(atualPokemon).toHaveTextContent('Dragon');
     expect(botaoAll).not.toBeDisabled();
-
   });
 
   it('Teste o botão do filtro All', () => {
@@ -78,14 +77,14 @@ describe('Teste do Componente Pokedex', () => {
     const atualPokemon = screen.getByTestId('pokemon-name');
     const proxPokemon = screen.getByTestId('next-pokemon');
 
-    for (let index = 0; index < pokemons.length; index++) {
+    for (let index = 0; index < pokemons.length; index += 1) {
       expect(atualPokemon).toHaveTextContent(pokemons[index].name);
-      userEvent.click(proxPokemon);  
+      userEvent.click(proxPokemon);
     }
 
     userEvent.click(otherFilter);
     userEvent.click(botaoAll);
-    for (let index = 0; index < pokemons.length; index++) {
+    for (let index = 0; index < pokemons.length; index += 1) {
       expect(atualPokemon).toHaveTextContent(pokemons[index].name);
       userEvent.click(proxPokemon);  
     }
