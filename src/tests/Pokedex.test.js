@@ -66,9 +66,28 @@ describe('Teste do Componente Pokedex', () => {
   });
 
   it('Teste o botão do filtro All', () => {
+    const pokemons = pokemonList;
+
     renderWithRouter(<App />);
 
+    const painelTipos = screen.getAllByTestId('pokemon-type-button');
+    const otherFilter = painelTipos[3];
     const botaoAll = screen.getByText(/All/i);
     expect(botaoAll).toHaveTextContent('All');
+
+    const atualPokemon = screen.getByTestId('pokemon-name');
+    const proxPokemon = screen.getByTestId('next-pokemon');
+
+    for (let index = 0; index < pokemons.length; index++) {
+      expect(atualPokemon).toHaveTextContent(pokemons[index].name);
+      userEvent.click(proxPokemon);  
+    }
+
+    userEvent.click(otherFilter);
+    userEvent.click(botaoAll);
+    for (let index = 0; index < pokemons.length; index++) {
+      expect(atualPokemon).toHaveTextContent(pokemons[index].name);
+      userEvent.click(proxPokemon);  
+    }
   });
 });
