@@ -86,7 +86,7 @@ describe('Teste do Componente Pokedex', () => {
     userEvent.click(botaoAll);
     for (let index = 0; index < pokemons.length; index += 1) {
       expect(atualPokemon).toHaveTextContent(pokemons[index].name);
-      userEvent.click(proxPokemon);  
+      userEvent.click(proxPokemon);
     }
   });
 });
