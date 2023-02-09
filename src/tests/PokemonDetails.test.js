@@ -6,16 +6,19 @@ import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
 describe('Teste do Componente PokemonDetails', () => {
+  const idName = 'pokemon-name';
+  const detailsText = 'More details';
+
   it('Teste se as informações detalhadas dos Pokémons aparecem', () => {
     renderWithRouter(<App />);
 
-    const pokemon = screen.getByTestId('pokemon-name');
+    const pokemon = screen.getByTestId(idName);
     expect(pokemon).toBeInTheDocument();
     const nome = pokemon.textContent;
     const pokemonObj = pokemonList.filter((e) => e.name === nome);
     const pokemonSummary = pokemonObj[0].summary;
 
-    const moreDetails = screen.getByRole('link', { name: 'More details' });
+    const moreDetails = screen.getByRole('link', { name: detailsText });
     expect(moreDetails).toBeInTheDocument();
     userEvent.click(moreDetails);
 
@@ -34,13 +37,13 @@ describe('Teste do Componente PokemonDetails', () => {
   it('Teste se a seção dos mapas esa funcionando', () => {
     renderWithRouter(<App />);
 
-    const pokemon = screen.getByTestId('pokemon-name');
+    const pokemon = screen.getByTestId(idName);
     expect(pokemon).toBeInTheDocument();
     const nome = pokemon.textContent;
     const pokemonObj = pokemonList.filter((e) => e.name === nome);
     const pokemonMap = pokemonObj[0].foundAt;
 
-    const moreDetails = screen.getByRole('link', { name: 'More details' });
+    const moreDetails = screen.getByRole('link', { name: detailsText });
     expect(moreDetails).toBeInTheDocument();
     userEvent.click(moreDetails);
 
@@ -64,11 +67,11 @@ describe('Teste do Componente PokemonDetails', () => {
   it('Teste o botão de favoritar', () => {
     renderWithRouter(<App />);
 
-    const pokemon = screen.getByTestId('pokemon-name');
+    const pokemon = screen.getByTestId(idName);
     expect(pokemon).toBeInTheDocument();
     const nome = pokemon.textContent;
 
-    const moreDetails = screen.getByRole('link', { name: 'More details' });
+    const moreDetails = screen.getByRole('link', { name: detailsText });
     expect(moreDetails).toBeInTheDocument();
     userEvent.click(moreDetails);
 
