@@ -33,7 +33,12 @@ describe('Teste do Componente Pokemon', () => {
   it('Teste se o link para exibir os detalhes está funcionando', () => {
     const pikachu = pokemonList[0];
 
-    const { history } = renderWithRouter(<Pokemon pokemon={pikachu} isFavorite={false} />);
+    const { history } = renderWithRouter(
+      <Pokemon
+        pokemon={ pikachu }
+        isFavorite={ false }
+      />
+    );
 
     const detalhes = screen.getByRole('link', { name: 'More details' });
     expect(detalhes).toBeInTheDocument();
