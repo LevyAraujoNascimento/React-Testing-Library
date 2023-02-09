@@ -37,7 +37,7 @@ describe('Teste do Componente Pokemon', () => {
       <Pokemon
         pokemon={ pikachu }
         isFavorite={ false }
-      />
+      />,
     );
 
     const detalhes = screen.getByRole('link', { name: 'More details' });
